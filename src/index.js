@@ -1,46 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Helmet } from 'react-helmet';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import 'assets/vendor/nucleo/css/nucleo.css';
-import 'assets/vendor/font-awesome/css/font-awesome.min.css';
-import 'assets/scss/argon-design-system-react.scss?v1.1.0';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "assets/styles/tailwind.css";
 
-import Index from 'views/Index.js';
-import Landing from 'views/examples/Landing.js';
-import CoursesLanding from './components/Courses/Landing';
-import CourseContainer from './components/Courses/CourseContainer';
-import Login from 'views/examples/Login.js';
-import Profile from 'views/examples/Profile.js';
-import Register from 'views/examples/Register.js';
+// layouts
+
+import Admin from "layouts/Admin.js";
+import Auth from "layouts/Auth.js";
+
+// views without layouts
+
+import Landing from "views/Landing.js";
+import Profile from "views/Profile.js";
+import Index from "views/Index.js";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path='/' exact render={(props) => <Index {...props} />} />
-      <Route
-        path='/courses'
-        exact
-        render={(props) => <CoursesLanding {...props} />}
-      />
-      <Route
-        path='/login-page'
-        exact
-        render={(props) => <Login {...props} />}
-      />
-      <Route
-        path='/profile-page'
-        exact
-        render={(props) => <Profile {...props} />}
-      />
-      <Route
-        path='/register-page'
-        exact
-        render={(props) => <Register {...props} />}
-      />
-      {/* <Redirect to='/' /> */}
+      {/* add routes with layouts */}
+      <Route path="/admin" component={Admin} />
+      <Route path="/auth" component={Auth} />
+      {/* add routes without layouts */}
+      <Route path="/landing" exact component={Landing} />
+      <Route path="/profile" exact component={Profile} />
+      <Route path="/" exact component={Index} />
+      {/* add redirect for first page */}
+      <Redirect from="*" to="/" />
     </Switch>
   </BrowserRouter>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
