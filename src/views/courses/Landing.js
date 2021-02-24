@@ -1,11 +1,13 @@
 /*eslint-disable*/
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 import IndexNavbar from 'components/Navbars/IndexNavbar.js';
 import Footer from 'components/Footers/Footer.js';
+import Container from './detail/Container';
 
 export default function Index() {
+  let { path, url } = useRouteMatch();
   return (
     <>
       <IndexNavbar fixed />
@@ -19,7 +21,7 @@ export default function Index() {
                   <h5 className='text-xl font-semibold pb-4 text-center'>
                     Open Source Development
                   </h5>
-                  <Link to='/detail/oss'>
+                  <Link to={`${url}/detail/oss`}>
                     <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
                       <img
                         alt='...'
@@ -34,7 +36,7 @@ export default function Index() {
                   <h5 className='text-xl font-semibold pb-4 text-center'>
                     Freelancing
                   </h5>
-                  <Link to='/detail/freelancing'>
+                  <Link to={`${url}/detail/freelancing`}>
                     <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
                       <img
                         alt='...'
@@ -49,7 +51,7 @@ export default function Index() {
                   <h5 className='text-xl font-semibold pb-4 text-center'>
                     Competitive Programming
                   </h5>
-                  <Link to='/detail/cp'>
+                  <Link to={`${url}/detail/cp`}>
                     <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
                       <img
                         alt='...'
@@ -65,7 +67,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className='header relative pt-16 items-center flex h-screen max-h-860-px'>
+      {/* <section className='header relative pt-16 items-center flex h-screen max-h-860-px'>
         <div className='container mx-auto'>
           <div className='justify-center flex flex-wrap'>
             <div className='w-full lg:w-12/12 px-4  -mt-24'>
@@ -771,7 +773,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <Footer />
     </>
   );

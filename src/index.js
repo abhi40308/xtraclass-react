@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'assets/styles/tailwind.css';
-
 // courses
 import CoursesLanding from 'views/courses/Landing.js';
+import Container from 'views/courses/detail/Container.js';
 
 // layouts
 
@@ -22,7 +22,8 @@ import Index from 'views/Index.js';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path='/courses' component={CoursesLanding} />
+      <Route path='/courses' exact component={CoursesLanding} />
+      <Route path='/courses/detail/:id' component={Container} />
       {/* add routes with layouts */}
       <Route path='/admin' component={Admin} />
       <Route path='/auth' component={Auth} />
@@ -31,7 +32,7 @@ ReactDOM.render(
       <Route path='/profile' exact component={Profile} />
       <Route path='/' exact component={Index} />
       {/* add redirect for first page */}
-      <Redirect from='*' to='/' />
+      {/* <Redirect from='*' to='/' /> */}
     </Switch>
   </BrowserRouter>,
   document.getElementById('root'),
