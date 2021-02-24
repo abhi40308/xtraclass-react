@@ -9,23 +9,144 @@ export default function Index() {
   return (
     <>
       <IndexNavbar fixed />
+
+      <section className='header relative pt-16 items-center flex h-screen max-h-860-px'>
+        <div className='container mx-auto'>
+          <div className='justify-center flex flex-wrap'>
+            <div className='w-full lg:w-12/12 px-4  -mt-24'>
+              <div className='flex flex-wrap'>
+                <div className='w-full lg:w-4/12 px-4'>
+                  <h5 className='text-xl font-semibold pb-4 text-center'>
+                    Open Source Development
+                  </h5>
+                  <Link to='/detail/oss'>
+                    <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
+                      <img
+                        alt='...'
+                        className='align-middle border-none max-w-full h-auto rounded-lg'
+                        src={require('assets/img/login.jpg')}
+                      />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className='w-full lg:w-4/12 px-4'>
+                  <h5 className='text-xl font-semibold pb-4 text-center'>
+                    Freelancing
+                  </h5>
+                  <Link to='/detail/freelancing'>
+                    <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
+                      <img
+                        alt='...'
+                        className='align-middle border-none max-w-full h-auto rounded-lg'
+                        src={require('assets/img/profile.jpg')}
+                      />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className='w-full lg:w-4/12 px-4'>
+                  <h5 className='text-xl font-semibold pb-4 text-center'>
+                    Competitive Programming
+                  </h5>
+                  <Link to='/detail/cp'>
+                    <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
+                      <img
+                        alt='...'
+                        className='align-middle border-none max-w-full h-auto rounded-lg'
+                        src={require('assets/img/landing.jpg')}
+                      />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className='header relative pt-16 items-center flex h-screen max-h-860-px'>
+        <div className='container mx-auto'>
+          <div className='justify-center flex flex-wrap'>
+            <div className='w-full lg:w-12/12 px-4  -mt-24'>
+              <div className='flex flex-wrap'>
+                <div className='w-full lg:w-4/12 px-4'>
+                  <h5 className='text-xl font-semibold pb-4 text-center'>
+                    Login Page
+                  </h5>
+                  <Link to='/auth/login'>
+                    <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
+                      <img
+                        alt='...'
+                        className='align-middle border-none max-w-full h-auto rounded-lg'
+                        src={require('assets/img/login.jpg')}
+                      />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className='w-full lg:w-4/12 px-4'>
+                  <h5 className='text-xl font-semibold pb-4 text-center'>
+                    Profile Page
+                  </h5>
+                  <Link to='/profile'>
+                    <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
+                      <img
+                        alt='...'
+                        className='align-middle border-none max-w-full h-auto rounded-lg'
+                        src={require('assets/img/profile.jpg')}
+                      />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className='w-full lg:w-4/12 px-4'>
+                  <h5 className='text-xl font-semibold pb-4 text-center'>
+                    Landing Page
+                  </h5>
+                  <Link to='/landing'>
+                    <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
+                      <img
+                        alt='...'
+                        className='align-middle border-none max-w-full h-auto rounded-lg'
+                        src={require('assets/img/landing.jpg')}
+                      />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className='header relative pt-16 items-center flex h-screen max-h-860-px'>
         <div className='container mx-auto items-center flex flex-wrap'>
           <div className='w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4'>
             <div className='pt-32 sm:pt-0'>
               <h2 className='font-semibold text-4xl text-gray-700'>
-                XtraClass
+                Notus React - A beautiful extension for Tailwind CSS.
               </h2>
               <p className='mt-4 text-lg leading-relaxed text-gray-600'>
-                Learn programming with the best resources available on internet,
-                for free.
+                Notus React is Free and Open Source. It does not change or add
+                any CSS to the already one from{' '}
+                <a
+                  href='https://tailwindcss.com/?ref=creativetim'
+                  className='text-gray-700'
+                  target='_blank'
+                >
+                  Tailwind CSS
+                </a>
+                . It features multiple HTML elements and it comes with dynamic
+                components for ReactJS, Vue and Angular.
               </p>
               <div className='mt-12'>
                 <a
-                  href='/courses'
+                  href='https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-index'
+                  target='_blank'
                   className='get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 active:bg-blue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150'
                 >
-                  View courses
+                  Get started
                 </a>
                 <a
                   href='https://github.com/creativetimofficial/notus-react?ref=nr-index'
