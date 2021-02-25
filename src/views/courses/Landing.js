@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import IndexNavbar from 'components/Navbars/IndexNavbar.js';
 import Footer from 'components/Footers/Footer.js';
@@ -10,6 +11,10 @@ export default function Index() {
   let { path, url } = useRouteMatch();
   return (
     <>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Courses</title>
+      </Helmet>
       <IndexNavbar fixed />
 
       <section className='header relative pt-16 items-center flex h-screen max-h-860-px'>
