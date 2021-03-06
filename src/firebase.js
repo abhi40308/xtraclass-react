@@ -3,14 +3,14 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDQXIt_y8DFPXLVVqPfrvFfTI9zmsLcAqc',
-  authDomain: 'xtraclass-e2e81.firebaseapp.com',
-  databaseURL: 'https://xtraclass-e2e81-default-rtdb.firebaseio.com',
-  projectId: 'xtraclass-e2e81',
-  storageBucket: 'xtraclass-e2e81.appspot.com',
-  messagingSenderId: '170070071936',
-  appId: '1:170070071936:web:07479538e0eca89b436465',
-  measurementId: 'G-W9XQG6LQW9',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
