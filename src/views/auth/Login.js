@@ -1,32 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { firebaseAuth } from '../../providers/AuthProvider';
 
-export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+const Login = (props) => {
+  const { handleSignin, inputs, setInputs, errors } = useContext(firebaseAuth);
 
-  const signInWithEmailAndPasswordHandler = (event, email, password) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('handleSubmit');
+    await handleSignin();
+    props.history.push('/');
   };
-
-  const onChangeHandler = (event) => {
-    const { name, value } = event.currentTarget;
-
-    if (name === 'userEmail') {
-      setEmail(value);
-    } else if (name === 'userPassword') {
-      setPassword(value);
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(inputs);
+    setInputs((prev) => ({ ...prev, [name]: value }));
   };
-
-  if (error)
-    return (
-      <>
-        <p>Some error occured</p>
-        <div>{error}</div>
-      </>
-    );
 
   return (
     <>
@@ -70,7 +59,7 @@ export default function Login() {
                 <div className='text-gray-500 text-center mb-3 font-bold'>
                   <small>Or sign in with credentials</small>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className='relative w-full mb-3'>
                     <label
                       className='block uppercase text-gray-700 text-xs font-bold mb-2'
@@ -82,10 +71,9 @@ export default function Login() {
                       type='email'
                       className='px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150'
                       placeholder='Email'
-                      value={email}
-                      name='userEmail'
-                      id='userEmail'
-                      onChange={(event) => onChangeHandler(event)}
+                      name='email'
+                      value={inputs.email}
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -100,10 +88,9 @@ export default function Login() {
                       type='password'
                       className='px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150'
                       placeholder='Password'
-                      name='userPassword'
-                      value={password}
-                      id='userPassword'
-                      onChange={(event) => onChangeHandler(event)}
+                      onChange={handleChange}
+                      name='password'
+                      value={inputs.password}
                     />
                   </div>
                   <div>
@@ -122,11 +109,16 @@ export default function Login() {
                   <div className='text-center mt-6'>
                     <button
                       className='bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
-                      type='button'
+                      type='submit'
                     >
                       Sign In
                     </button>
                   </div>
+                  {errors.length > 0
+                    ? errors.map((error) => (
+                        <p style={{ color: 'red' }}>{error}</p>
+                      ))
+                    : null}
                 </form>
               </div>
             </div>
@@ -154,4 +146,6 @@ export default function Login() {
       </div>
     </>
   );
-}
+};
+
+export default Login;

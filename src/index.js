@@ -1,40 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import UserProvider from './providers/UserProvider';
+import AuthProvider from './providers/AuthProvider';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'assets/styles/tailwind.css';
-// courses
-import CoursesLanding from 'views/courses/Landing.js';
-import Container from 'views/courses/detail/Container.js';
 
-// layouts
-
-import Admin from 'layouts/Admin.js';
-import Auth from 'layouts/Auth.js';
-
-// views without layouts
-
-import Landing from 'views/Landing.js';
-import Profile from 'views/Profile.js';
-import Index from 'views/Index.js';
+import App from './App';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Switch>
-      <Route path='/courses' exact component={CoursesLanding} />
-      <Route path='/courses/detail/:id' component={Container} />
-      {/* add routes with layouts */}
-      <Route path='/admin' component={Admin} />
-      <Route path='/auth' component={Auth} />
-      {/* add routes without layouts */}
-      <Route path='/landing' exact component={Landing} />
-      <Route path='/profile' exact component={Profile} />
-      <Route path='/' exact component={Index} />
-      {/* add redirect for first page */}
-      {/* <Redirect from='*' to='/' /> */}
-    </Switch>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </BrowserRouter>,
   document.getElementById('root'),
 );

@@ -1,28 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { firebaseAuth } from '../../providers/AuthProvider';
 
-export default function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
-  const [error, setError] = useState(null);
-  const createUserWithEmailAndPasswordHandler = (event, email, password) => {
-    event.preventDefault();
-    setEmail('');
-    setPassword('');
-    setDisplayName('');
-  };
-  const onChangeHandler = (event) => {
-    const { name, value } = event.currentTarget;
-    if (name === 'userEmail') {
-      setEmail(value);
-    } else if (name === 'userPassword') {
-      setPassword(value);
-    } else if (name === 'displayName') {
-      setDisplayName(value);
-    }
+const Register = (props) => {
+  const { handleSignup, inputs, setInputs, errors } = useContext(firebaseAuth);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('handleSubmit');
+    //wait to signup
+    await handleSignup();
+    //push home
+    props.history.push('/');
   };
 
-  if (error) return <div>{error}</div>;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(inputs);
+    setInputs((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <>
@@ -66,8 +61,8 @@ export default function Register() {
                 <div className='text-gray-500 text-center mb-3 font-bold'>
                   <small>Or sign up with credentials</small>
                 </div>
-                <form>
-                  <div className='relative w-full mb-3'>
+                <form onSubmit={handleSubmit}>
+                  {/* <div className='relative w-full mb-3'>
                     <label
                       className='block uppercase text-gray-700 text-xs font-bold mb-2'
                       htmlFor='grid-password'
@@ -78,12 +73,9 @@ export default function Register() {
                       className='px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150'
                       placeholder='Name'
                       type='text'
-                      name='displayName'
-                      value={displayName}
-                      id='displayName'
-                      onChange={(event) => onChangeHandler(event)}
+                      value={inputs.name}
                     />
-                  </div>
+                  </div> */}
 
                   <div className='relative w-full mb-3'>
                     <label
@@ -96,10 +88,9 @@ export default function Register() {
                       type='email'
                       className='px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150'
                       placeholder='Email'
-                      name='userEmail'
-                      value={email}
-                      id='userEmail'
-                      onChange={(event) => onChangeHandler(event)}
+                      name='email'
+                      value={inputs.email}
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -114,10 +105,9 @@ export default function Register() {
                       type='password'
                       className='px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150'
                       placeholder='Password'
-                      name='userPassword'
-                      value={password}
-                      id='userPassword'
-                      onChange={(event) => onChangeHandler(event)}
+                      onChange={handleChange}
+                      name='password'
+                      value={inputs.password}
                     />
                   </div>
 
@@ -144,18 +134,16 @@ export default function Register() {
                   <div className='text-center mt-6'>
                     <button
                       className='bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
-                      type='button'
-                      onClick={(event) => {
-                        createUserWithEmailAndPasswordHandler(
-                          event,
-                          email,
-                          password,
-                        );
-                      }}
+                      type='submit'
                     >
                       Create Account
                     </button>
                   </div>
+                  {errors.length > 0
+                    ? errors.map((error) => (
+                        <p style={{ color: 'red' }}>{error}</p>
+                      ))
+                    : null}
                 </form>
               </div>
             </div>
@@ -164,4 +152,6 @@ export default function Register() {
       </div>
     </>
   );
-}
+};
+
+export default Register;
