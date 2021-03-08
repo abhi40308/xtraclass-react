@@ -1,13 +1,17 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // components
 
 import PagesDropdown from 'components/Dropdowns/PagesDropdown.js';
+import { firebaseAuth } from '../../providers/AuthProvider';
+import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  // get token here
+  const { token } = useContext(firebaseAuth);
   return (
     <>
       <nav className='top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg'>
@@ -82,16 +86,22 @@ export default function Navbar(props) {
                 </a>
               </li>
 
-              <li className='flex items-center'>
-                <Link to='/auth/login'>
-                  <button
-                    className='bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150'
-                    type='button'
-                  >
-                    <i className='fas fa-sign-in-alt'></i> Sign In
-                  </button>
-                </Link>
-              </li>
+              {token === null ? (
+                <li className='flex items-center'>
+                  <Link to='/auth/login'>
+                    <button
+                      className='bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150'
+                      type='button'
+                    >
+                      <i className='fas fa-sign-in-alt'></i> Sign In
+                    </button>
+                  </Link>
+                </li>
+              ) : (
+                <li className='flex-col md:flex-row list-none items-center hidden md:flex'>
+                  <UserDropdown />
+                </li>
+              )}
             </ul>
           </div>
         </div>
