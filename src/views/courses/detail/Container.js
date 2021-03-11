@@ -8,7 +8,12 @@ const Container = (props) => {
   const id = match.params.id;
   // const prerequisites = ['Learning to write first program', 'Learning a programming language', 'Learning to '];
   const links = [];
-  const tracks = ['Learning to write first program', 'Stepping into open source', 'Google Code In (GCI)', ''];
+  const tracks = [
+    'Learning to write first program',
+    'Stepping into open source',
+    'Google Code In (GCI)',
+    '',
+  ];
   // get links from firebase.
   return (
     <>

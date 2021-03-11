@@ -8,7 +8,7 @@ import IndexNavbar from 'components/Navbars/IndexNavbar.js';
 import Footer from 'components/Footers/Footer.js';
 import Container from './detail/Container';
 
-export default function Index() {
+const CoursesLanding = () => {
   let { path, url } = useRouteMatch();
   const { handleSignup, inputs } = useContext(firebaseAuth);
   console.log(inputs, handleSignup);
@@ -78,4 +78,6 @@ export default function Index() {
       <Footer />
     </>
   );
-}
+};
+
+export default CoursesLanding;

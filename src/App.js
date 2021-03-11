@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import CoursesLanding from 'views/courses/Landing.js';
-import Container from 'views/courses/detail/Container.js';
 
 import Admin from 'layouts/Admin.js';
 import Auth from 'layouts/Auth.js';
-
+import CoursesLanding from 'views/courses/Landing.js';
+import Container from 'views/courses/detail/Container.js';
 import Landing from 'views/Landing.js';
 import Profile from 'views/Profile.js';
 import Index from 'views/Index.js';
-import { firebaseAuth } from './providers/AuthProvider';
+import { firebaseAuth } from 'providers/AuthProvider';
 
 function App() {
   const { token } = useContext(firebaseAuth);
