@@ -5,7 +5,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
 export const authMethods = {
   // firebase helper methods go here...
-  googleSignup: () => {
+  googleSignup: (setToken, setGoogleUser, setErrors) => {
     firebase
       .auth()
       .signInWithPopup(provider)
@@ -15,8 +15,14 @@ export const authMethods = {
 
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = credential.accessToken;
+        setToken(token);
         // The signed-in user info.
         var user = result.user;
+        setGoogleUser(user);
+        console.log('>>> credential', credential);
+        console.log('>>> token', token);
+        console.log('>>> user', user);
+
         // ...
       })
       .catch((error) => {
@@ -27,6 +33,7 @@ export const authMethods = {
         var email = error.email;
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
+        setErrors(error);
         // ...
       });
   },

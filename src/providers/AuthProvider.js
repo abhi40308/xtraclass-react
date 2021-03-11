@@ -8,18 +8,20 @@ const AuthProvider = (props) => {
   const [inputs, setInputs] = useState(initState);
   const [errors, setErrors] = useState([]);
   const [token, setToken] = useState(null);
+  const [googleUser, setGoogleUser] = useState(null);
+
+  const handleGoogleSignup = () => {
+    authMethods.googleSignup(setToken, setGoogleUser, setErrors);
+  };
 
   const handleSignup = () => {
     // middle man between firebase and signup
     console.log('handleSignup');
-    // calling signup from firebase server
     authMethods.signup(inputs.email, inputs.password, setErrors, setToken);
     console.log(errors, token);
   };
   const handleSignin = () => {
-    //changed to handleSingin
     console.log('handleSignin!!!!');
-    // made signup signin
     authMethods.signin(inputs.email, inputs.password, setErrors, setToken);
     console.log(errors, token);
   };
@@ -31,14 +33,15 @@ const AuthProvider = (props) => {
   return (
     <firebaseAuth.Provider
       value={{
-        //replaced test with handleSignup
         handleSignup,
+        handleGoogleSignup,
         handleSignin,
-        token,
-        inputs,
-        setInputs,
-        errors,
         handleSignout,
+        setInputs,
+        inputs,
+        googleUser,
+        token,
+        errors,
       }}
     >
       {props.children}
