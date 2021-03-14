@@ -2,7 +2,6 @@
 import React, { useContext } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { firebaseAuth } from '../../providers/AuthProvider';
 
 import IndexNavbar from 'components/Navbars/IndexNavbar.js';
 import Footer from 'components/Footers/Footer.js';
@@ -10,8 +9,6 @@ import Container from './detail/Container';
 
 const CoursesLanding = () => {
   let { path, url } = useRouteMatch();
-  const { handleSignup, inputs } = useContext(firebaseAuth);
-  console.log(inputs, handleSignup);
   return (
     <>
       <Helmet>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Admin from 'layouts/Admin.js';
 import Auth from 'layouts/Auth.js';
@@ -10,9 +11,9 @@ import Profile from 'views/Profile.js';
 import Index from 'views/Index.js';
 import { firebaseAuth } from 'providers/AuthProvider';
 
-function App() {
-  const { token } = useContext(firebaseAuth);
-  console.log(token);
+function App(props) {
+  // const { token } = useContext(firebaseAuth);
+  // console.log(token);
   return (
     <>
       <Switch>
@@ -35,4 +36,11 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isVerifying: state.auth.isVerifying,
+  };
+}
+
+export default connect(mapStateToProps)(App);

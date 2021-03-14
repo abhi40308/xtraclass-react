@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { firebaseAuth } from '../providers/AuthProvider';
 
 // components
 
@@ -14,8 +13,6 @@ import Register from 'views/auth/Register.js';
 import PasswordReset from 'views/auth/PasswordReset.js';
 
 export default function Auth() {
-  const { handleSignup, inputs } = useContext(firebaseAuth);
-  console.log('>>> in auth', inputs, handleSignup);
   return (
     <>
       <Navbar transparent />

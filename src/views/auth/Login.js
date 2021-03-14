@@ -1,21 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { firebaseAuth } from '../../providers/AuthProvider';
+import { loginUser } from 'actions/auth';
 
 const Login = (props) => {
-  const { handleSignin, inputs, setInputs, errors } = useContext(firebaseAuth);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('handleSubmit');
-    await handleSignin();
-    props.history.push('/');
+  const handleEmailChange = ({ target }) => {
+    setEmail(target.value);
   };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(inputs);
-    setInputs((prev) => ({ ...prev, [name]: value }));
+
+  const handlePasswordChange = ({ target }) => {
+    setPassword(target.value);
   };
+
+  const handleSubmit = () => {
+    const { dispatch } = this.props;
+    const { email, password } = this.state;
+
+    dispatch(loginUser(email, password));
+  };
+
+  // const { handleSignin, inputs, setInputs, errors } = useContext(firebaseAuth);
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log('handleSubmit');
+  //   await handleSignin(); // TODO: if not error then push path.
+  //   props.history.push('/');
+  // };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   console.log(inputs);
+  //   setInputs((prev) => ({ ...prev, [name]: value }));
+  // };
 
   return (
     <>
@@ -72,8 +90,8 @@ const Login = (props) => {
                       className='px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150'
                       placeholder='Email'
                       name='email'
-                      value={inputs.email}
-                      onChange={handleChange}
+                      value={email}
+                      onChange={handleEmailChange}
                     />
                   </div>
 
@@ -88,9 +106,9 @@ const Login = (props) => {
                       type='password'
                       className='px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150'
                       placeholder='Password'
-                      onChange={handleChange}
+                      onChange={handlePasswordChange}
                       name='password'
-                      value={inputs.password}
+                      value={password}
                     />
                   </div>
                   <div>
@@ -114,11 +132,12 @@ const Login = (props) => {
                       Sign In
                     </button>
                   </div>
-                  {errors.length > 0
+                  {/* get errors */}
+                  {/* {errors.length > 0
                     ? errors.map((error) => (
                         <p style={{ color: 'red' }}>{error}</p>
                       ))
-                    : null}
+                    : null} */}
                 </form>
               </div>
             </div>
